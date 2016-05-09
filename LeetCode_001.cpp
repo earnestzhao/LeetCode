@@ -26,3 +26,9 @@ public:
 		}
     }
 };
+
+/*
+
+Using map.
+
+*/
