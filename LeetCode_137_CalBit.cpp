@@ -2,22 +2,22 @@ class Solution
 {
 public:
 
-	int singleNumber(vector<int> & nums)
-	{
-		int iOne = 0, iTwo = 0, iThree = 0;
-		
-		for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
-		{
-			iTwo   = (nums[iIndex] & iOne) | iTwo;
-			iOne   = nums[iIndex] ^ iOne;
-			iThree = iOne & iTwo;
-			
-			iOne &= ~iThree;
-			iTwo &= ~iThree;
-		}
-		
-		return iOne;
-	}
+    int singleNumber(vector<int> & nums)
+    {
+        int iOne = 0, iTwo = 0, iThree = 0;
+        
+        for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
+        {
+            iTwo   = (nums[iIndex] & iOne) | iTwo;
+            iOne   = nums[iIndex] ^ iOne;
+            iThree = iOne & iTwo;
+            
+            iOne &= ~iThree;
+            iTwo &= ~iThree;
+        }
+        
+        return iOne;
+    }
 };
 
 /*

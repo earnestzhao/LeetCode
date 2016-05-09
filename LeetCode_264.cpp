@@ -2,70 +2,70 @@ class Solution
 {
 public:
 
-	int nthUglyNumber(int n)
-	{
-		vector<int> vecUglyNumberList;
-		vecUglyNumberList.push_back(0);
-		vecUglyNumberList.push_back(1);
-		vecUglyNumberList.push_back(2);
-		vecUglyNumberList.push_back(3);
-		vecUglyNumberList.push_back(4);
-		vecUglyNumberList.push_back(5);
-		
-		for (int iIndex = 6; iIndex <= n; iIndex ++)
-		{
-			int iExpect2 = BinarySearchBigger(vecUglyNumberList, vecUglyNumberList[iIndex - 1] / 2);
-			int iExpect3 = BinarySearchBigger(vecUglyNumberList, vecUglyNumberList[iIndex - 1] / 3);
-			int iExpect5 = BinarySearchBigger(vecUglyNumberList, vecUglyNumberList[iIndex - 1] / 5);
-			
-			int iExpectVal2 = iExpect2 * 2;
-			int iExpectVal3 = iExpect3 * 3;
-			int iExpectVal5 = iExpect5 * 5;
-			int iUglyNumber = iExpectVal2;
-			
-			if (iUglyNumber > iExpectVal3)
-			{
-				iUglyNumber = iExpectVal3;
-			}
-			
-			if (iUglyNumber > iExpectVal5)
-			{
-				iUglyNumber = iExpectVal5;
-			}
-			
-			vecUglyNumberList.push_back(iUglyNumber);
-		}
-		
-		return vecUglyNumberList[n];
-	}
-	
+    int nthUglyNumber(int n)
+    {
+        vector<int> vecUglyNumberList;
+        vecUglyNumberList.push_back(0);
+        vecUglyNumberList.push_back(1);
+        vecUglyNumberList.push_back(2);
+        vecUglyNumberList.push_back(3);
+        vecUglyNumberList.push_back(4);
+        vecUglyNumberList.push_back(5);
+        
+        for (int iIndex = 6; iIndex <= n; iIndex ++)
+        {
+            int iExpect2 = BinarySearchBigger(vecUglyNumberList, vecUglyNumberList[iIndex - 1] / 2);
+            int iExpect3 = BinarySearchBigger(vecUglyNumberList, vecUglyNumberList[iIndex - 1] / 3);
+            int iExpect5 = BinarySearchBigger(vecUglyNumberList, vecUglyNumberList[iIndex - 1] / 5);
+            
+            int iExpectVal2 = iExpect2 * 2;
+            int iExpectVal3 = iExpect3 * 3;
+            int iExpectVal5 = iExpect5 * 5;
+            int iUglyNumber = iExpectVal2;
+            
+            if (iUglyNumber > iExpectVal3)
+            {
+                iUglyNumber = iExpectVal3;
+            }
+            
+            if (iUglyNumber > iExpectVal5)
+            {
+                iUglyNumber = iExpectVal5;
+            }
+            
+            vecUglyNumberList.push_back(iUglyNumber);
+        }
+        
+        return vecUglyNumberList[n];
+    }
+    
 private:
 
-	int BinarySearchBigger(const vector<int> & vecList, int iValue)
-	{
-		int iStartIndex = 0;
-		int iEndIndex   = vecList.size() - 1;
-		
-		while (iStartIndex <= iEndIndex)
-		{
-			int iMidIndex = iStartIndex + (iEndIndex - iStartIndex) / 2;
-			
-			if (iValue == vecList[iMidIndex])
-			{
-				return vecList[iMidIndex + 1];
-			}
-			else if (iValue > vecList[iMidIndex])
-			{
-				iStartIndex = iMidIndex + 1;
-			}
-			else
-			{
-				iEndIndex = iMidIndex - 1;
-			}
-		}
-		
-		return vecList[iStartIndex];
-	}
+    int BinarySearchBigger(const vector<int> & vecList, int iValue)
+    {
+        int iStartIndex = 0;
+        int iEndIndex   = vecList.size() - 1;
+        
+        while (iStartIndex <= iEndIndex)
+        {
+            int iMidIndex = iStartIndex + (iEndIndex - iStartIndex) / 2;
+            
+            if (iValue == vecList[iMidIndex])
+            {
+                return vecList[iMidIndex + 1];
+            }
+            else if (iValue > vecList[iMidIndex])
+            {
+                iStartIndex = iMidIndex + 1;
+            }
+            else
+            {
+                iEndIndex = iMidIndex - 1;
+            }
+        }
+        
+        return vecList[iStartIndex];
+    }
 };
 
 /*

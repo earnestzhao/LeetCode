@@ -2,16 +2,16 @@ class Solution
 {
 public:
 
-	int missingNumber(vector<int> & nums)
-	{
-		int iCurrentSum = 0;
-		
-		for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
-		{
-			iCurrentSum += nums[iIndex];
-		}
-		
-		return (0 + nums.size()) * (nums.size() + 1) / 2 - iCurrentSum;
+    int missingNumber(vector<int> & nums)
+    {
+        int iCurrentSum = 0;
+        
+        for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
+        {
+            iCurrentSum += nums[iIndex];
+        }
+        
+        return (0 + nums.size()) * (nums.size() + 1) / 2 - iCurrentSum;
     }
 };
 

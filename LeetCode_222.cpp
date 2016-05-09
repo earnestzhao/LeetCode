@@ -11,25 +11,25 @@ class Solution
 {
 public:
 
-	int countNodes(TreeNode * root)
-	{
-		if (root == NULL)
-		{
-			return 0;
-		}
-		
-		int iLeftHeight  = 0;
-		int iRightHeight = 0;
-		
-		for (TreeNode * pstCurrent = root; pstCurrent != NULL; iLeftHeight ++,  pstCurrent = pstCurrent -> left);
-		for (TreeNode * pstCurrent = root; pstCurrent != NULL; iRightHeight ++, pstCurrent = pstCurrent -> right);
-		
-		if (iLeftHeight == iRightHeight)
-		{
-			return (1 << iLeftHeight) - 1;
-		}
-		
-		return countNodes(root -> left) + countNodes(root -> right) + 1;
+    int countNodes(TreeNode * root)
+    {
+        if (root == NULL)
+        {
+            return 0;
+        }
+        
+        int iLeftHeight  = 0;
+        int iRightHeight = 0;
+        
+        for (TreeNode * pstCurrent = root; pstCurrent != NULL; iLeftHeight ++,  pstCurrent = pstCurrent -> left);
+        for (TreeNode * pstCurrent = root; pstCurrent != NULL; iRightHeight ++, pstCurrent = pstCurrent -> right);
+        
+        if (iLeftHeight == iRightHeight)
+        {
+            return (1 << iLeftHeight) - 1;
+        }
+        
+        return countNodes(root -> left) + countNodes(root -> right) + 1;
     }
 };
 

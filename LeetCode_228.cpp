@@ -82,3 +82,4 @@ then, a new longer range is the merge of the 2 edge ranges.
 4. Other ranges except the edge will be keeped to the final result.
 
 */
+

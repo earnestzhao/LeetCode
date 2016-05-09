@@ -23,14 +23,14 @@ class Solution
                 
                 uiIndex = ujIndex + 1;
             }
-			
-			if (ujIndex == str.length() - 1)
-			{
-				if (uiIndex <= ujIndex)
+            
+            if (ujIndex == str.length() - 1)
+            {
+                if (uiIndex <= ujIndex)
                 {
-					vecSepStr.push_back(str.substr(uiIndex, ujIndex - uiIndex + 1));
+                    vecSepStr.push_back(str.substr(uiIndex, ujIndex - uiIndex + 1));
                 }
-			}
+            }
         }
         
         if (vecSepStr.size() != pattern.length())

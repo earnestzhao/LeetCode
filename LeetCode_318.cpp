@@ -1,42 +1,42 @@
 struct StrInfo
 {
-	int iAbstract;
+    int iAbstract;
 
-	int iLength;
+    int iLength;
 
-	int iLetterNum;
-	
-	StrInfo() : iAbstract(0), iLength(0), iLetterNum(0)
-	{
-	
-	}
-	
-	void SetLetter(char cLetter)
-	{
-		if (!IsLetterSet(cLetter))
-		{
-			iAbstract |= (1 << (cLetter - 'a'));
-			iLetterNum ++;
-		}
-		
-		iLength ++;
-	}
-	
-	bool IsLetterSet(char cLetter)
-	{
-		return (iAbstract & (1 << (cLetter - 'a')));
-	}
+    int iLetterNum;
+    
+    StrInfo() : iAbstract(0), iLength(0), iLetterNum(0)
+    {
+    
+    }
+    
+    void SetLetter(char cLetter)
+    {
+        if (!IsLetterSet(cLetter))
+        {
+            iAbstract |= (1 << (cLetter - 'a'));
+            iLetterNum ++;
+        }
+        
+        iLength ++;
+    }
+    
+    bool IsLetterSet(char cLetter)
+    {
+        return (iAbstract & (1 << (cLetter - 'a')));
+    }
 };
 
 
 bool StrInfoGreater(const StrInfo & stOper1, const StrInfo & stOper2)
 {
-	if (stOper1.iLength == stOper2.iLength)
-	{
-		return stOper1.iLetterNum < stOper2.iLetterNum;
-	}
-	
-	return stOper1.iLength > stOper2.iLength;
+    if (stOper1.iLength == stOper2.iLength)
+    {
+        return stOper1.iLetterNum < stOper2.iLetterNum;
+    }
+    
+    return stOper1.iLength > stOper2.iLength;
 };
 
 
@@ -44,44 +44,44 @@ class Solution
 {
 public:
 
-	int maxProduct(vector<string> & words)
-	{
-		vector<StrInfo> vecWordInfoList;
-		
-		for (int iIndex = 0; iIndex < words.size(); iIndex ++)
-		{
-			StrInfo stStrInfo;
-			
-			for (int jIndex = 0; jIndex < words[iIndex].length(); jIndex ++)
-			{
-				stStrInfo.SetLetter(words[iIndex][jIndex]);
-			}
-			
-			vecWordInfoList.push_back(stStrInfo);
-		}
-		
-		sort(vecWordInfoList.begin(), vecWordInfoList.end(), StrInfoGreater);
-		
-		int iMaxProductResult = 0;
-		
-		for (int iIndex = 0; iIndex < vecWordInfoList.size(); iIndex ++)
-		{
-			for (int jIndex = iIndex + 1; jIndex < vecWordInfoList.size(); jIndex ++)
-			{
-				if ((vecWordInfoList[iIndex].iAbstract & vecWordInfoList[jIndex].iAbstract) == 0)
-				{
-					int iCurrentResult = vecWordInfoList[iIndex].iLength * vecWordInfoList[jIndex].iLength;
-					
-					if (iCurrentResult > iMaxProductResult)
-					{
-						iMaxProductResult = iCurrentResult;
-						break;
-					}
-				}
-			}
-		}
-		
-		return iMaxProductResult;
+    int maxProduct(vector<string> & words)
+    {
+        vector<StrInfo> vecWordInfoList;
+        
+        for (int iIndex = 0; iIndex < words.size(); iIndex ++)
+        {
+            StrInfo stStrInfo;
+            
+            for (int jIndex = 0; jIndex < words[iIndex].length(); jIndex ++)
+            {
+                stStrInfo.SetLetter(words[iIndex][jIndex]);
+            }
+            
+            vecWordInfoList.push_back(stStrInfo);
+        }
+        
+        sort(vecWordInfoList.begin(), vecWordInfoList.end(), StrInfoGreater);
+        
+        int iMaxProductResult = 0;
+        
+        for (int iIndex = 0; iIndex < vecWordInfoList.size(); iIndex ++)
+        {
+            for (int jIndex = iIndex + 1; jIndex < vecWordInfoList.size(); jIndex ++)
+            {
+                if ((vecWordInfoList[iIndex].iAbstract & vecWordInfoList[jIndex].iAbstract) == 0)
+                {
+                    int iCurrentResult = vecWordInfoList[iIndex].iLength * vecWordInfoList[jIndex].iLength;
+                    
+                    if (iCurrentResult > iMaxProductResult)
+                    {
+                        iMaxProductResult = iCurrentResult;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        return iMaxProductResult;
     }
 };
 

@@ -3,46 +3,46 @@ class Solution
 public:
 
     int lengthOfLIS(vector<int> & nums)
-	{
-		if (nums.size() <= 0)
-		{
-			return 0;
-		}
-		
-		if (nums.size() == 1)
-		{
-			return 1;
-		}
-		
-		vector<int> vecLisCurrentIncludedList;
-		vecLisCurrentIncludedList.push_back(1);
-		
-		for (int iIndex = 1; iIndex < nums.size(); iIndex ++)
-		{
-			int iMaxLisCurrentIncluded = 1;
-			
-			for (int jIndex = 0; jIndex < iIndex; jIndex ++)
-			{
-				if (nums[jIndex] < nums[iIndex] && iMaxLisCurrentIncluded < vecLisCurrentIncludedList[jIndex] + 1)
-				{
-					iMaxLisCurrentIncluded = vecLisCurrentIncludedList[jIndex] + 1;
-				}
-			}
-			
-			vecLisCurrentIncludedList.push_back(iMaxLisCurrentIncluded);
-		}
-		
-		int iFinalResult = 0;
-		
-		for (int iIndex = 0; iIndex < vecLisCurrentIncludedList.size(); iIndex ++)
-		{
-			if (iFinalResult < vecLisCurrentIncludedList[iIndex])
-			{
-				iFinalResult = vecLisCurrentIncludedList[iIndex];
-			}
-		}
-		
-		return iFinalResult;
+    {
+        if (nums.size() <= 0)
+        {
+            return 0;
+        }
+        
+        if (nums.size() == 1)
+        {
+            return 1;
+        }
+        
+        vector<int> vecLisCurrentIncludedList;
+        vecLisCurrentIncludedList.push_back(1);
+        
+        for (int iIndex = 1; iIndex < nums.size(); iIndex ++)
+        {
+            int iMaxLisCurrentIncluded = 1;
+            
+            for (int jIndex = 0; jIndex < iIndex; jIndex ++)
+            {
+                if (nums[jIndex] < nums[iIndex] && iMaxLisCurrentIncluded < vecLisCurrentIncludedList[jIndex] + 1)
+                {
+                    iMaxLisCurrentIncluded = vecLisCurrentIncludedList[jIndex] + 1;
+                }
+            }
+            
+            vecLisCurrentIncludedList.push_back(iMaxLisCurrentIncluded);
+        }
+        
+        int iFinalResult = 0;
+        
+        for (int iIndex = 0; iIndex < vecLisCurrentIncludedList.size(); iIndex ++)
+        {
+            if (iFinalResult < vecLisCurrentIncludedList[iIndex])
+            {
+                iFinalResult = vecLisCurrentIncludedList[iIndex];
+            }
+        }
+        
+        return iFinalResult;
     }
 };
 

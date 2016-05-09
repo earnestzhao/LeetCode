@@ -2,115 +2,115 @@ class NumArray
 {
 public:
     
-	NumArray(vector<int> & nums) 
-	{
-		m_pstRoot = buildSumSegTree(nums, 0, nums.size() - 1);
+    NumArray(vector<int> & nums) 
+    {
+        m_pstRoot = buildSumSegTree(nums, 0, nums.size() - 1);
     }
 
     void update(int i, int val)
-	{
-		if (m_pstRoot != NULL)
-		{
-			updateSumValue(m_pstRoot, i, val);
-		}
+    {
+        if (m_pstRoot != NULL)
+        {
+            updateSumValue(m_pstRoot, i, val);
+        }
     }
 
     int sumRange(int i, int j)
-	{
-		if (m_pstRoot != NULL)
-		{
-			return getSumValueOfRange(m_pstRoot, i, j);
-		}
-		
-		return 0;
+    {
+        if (m_pstRoot != NULL)
+        {
+            return getSumValueOfRange(m_pstRoot, i, j);
+        }
+        
+        return 0;
     }
-	
+    
 private:
 
-	struct SumSegTreeNode
-	{
-		int iSumValue;
-		
-		int iSegLeft, iSegRight;
-		
-		SumSegTreeNode * pstNodeLeft, * pstNodeRight;
-		
-		SumSegTreeNode() : iSumValue(0), iSegLeft(0), iSegRight(0), pstNodeLeft(NULL), pstNodeRight(NULL) {  }
-	};
-	
-	SumSegTreeNode * buildSumSegTree(const vector<int> & vecNumList, int iSegLeft, int iSegRight)
-	{
-		if (vecNumList.size() <= 0)
-		{
-			return NULL;
-		}
-		
-		SumSegTreeNode * pstRoot = new SumSegTreeNode;
-		pstRoot -> iSegLeft  = iSegLeft;
-		pstRoot -> iSegRight = iSegRight;
-		
-		if (iSegLeft == iSegRight)
-		{
-			pstRoot -> iSumValue    = vecNumList[iSegLeft];
-			pstRoot -> pstNodeLeft  = NULL;
-			pstRoot -> pstNodeRight = NULL;
-		}
-		else
-		{
-			int iMidValue = (iSegLeft + iSegRight) / 2;
-			pstRoot -> pstNodeLeft  = buildSumSegTree(vecNumList, iSegLeft,      iMidValue);
-			pstRoot -> pstNodeRight = buildSumSegTree(vecNumList, iMidValue + 1, iSegRight);
-			pstRoot -> iSumValue    = pstRoot -> pstNodeLeft -> iSumValue + pstRoot -> pstNodeRight -> iSumValue;
-		}
-		
-		return pstRoot;
-	}
-	
-	void updateSumValue(SumSegTreeNode * pstRoot, int iIndex, int iValue)
-	{
-		if (pstRoot -> iSegLeft == pstRoot -> iSegRight)
-		{
-			pstRoot -> iSumValue = iValue;
-			return;
-		}
-		
-		int iMidValue = (pstRoot -> iSegLeft + pstRoot -> iSegRight) / 2;
-		
-		if (iIndex <= iMidValue)
-		{
-			updateSumValue(pstRoot -> pstNodeLeft, iIndex, iValue);
-		}
-		else
-		{
-			updateSumValue(pstRoot -> pstNodeRight, iIndex, iValue);
-		}
-		
-		pstRoot -> iSumValue = pstRoot -> pstNodeLeft -> iSumValue + pstRoot -> pstNodeRight -> iSumValue;
-	}
-	
-	int getSumValueOfRange(SumSegTreeNode * pstRoot, int iRangeLeft, int iRangeRight)
-	{
-		if (iRangeLeft == pstRoot -> iSegLeft && iRangeRight == pstRoot -> iSegRight)
-		{
-			return pstRoot -> iSumValue;
-		}
-		
-		int iMidValue = (pstRoot -> iSegLeft + pstRoot -> iSegRight) / 2;
-		
-		if (iRangeLeft <= iMidValue && iRangeRight <= iMidValue)
-		{
-			return getSumValueOfRange(pstRoot -> pstNodeLeft, iRangeLeft, iRangeRight);
-		}
-		
-		if (iRangeLeft > iMidValue && iRangeRight > iMidValue)
-		{
-			return getSumValueOfRange(pstRoot -> pstNodeRight, iRangeLeft, iRangeRight);
-		}
-		
-		return getSumValueOfRange(pstRoot -> pstNodeLeft, iRangeLeft, iMidValue) + getSumValueOfRange(pstRoot -> pstNodeRight, iMidValue + 1, iRangeRight);
-	}
-	
-	SumSegTreeNode * m_pstRoot;
+    struct SumSegTreeNode
+    {
+        int iSumValue;
+        
+        int iSegLeft, iSegRight;
+        
+        SumSegTreeNode * pstNodeLeft, * pstNodeRight;
+        
+        SumSegTreeNode() : iSumValue(0), iSegLeft(0), iSegRight(0), pstNodeLeft(NULL), pstNodeRight(NULL) {  }
+    };
+    
+    SumSegTreeNode * buildSumSegTree(const vector<int> & vecNumList, int iSegLeft, int iSegRight)
+    {
+        if (vecNumList.size() <= 0)
+        {
+            return NULL;
+        }
+        
+        SumSegTreeNode * pstRoot = new SumSegTreeNode;
+        pstRoot -> iSegLeft  = iSegLeft;
+        pstRoot -> iSegRight = iSegRight;
+        
+        if (iSegLeft == iSegRight)
+        {
+            pstRoot -> iSumValue    = vecNumList[iSegLeft];
+            pstRoot -> pstNodeLeft  = NULL;
+            pstRoot -> pstNodeRight = NULL;
+        }
+        else
+        {
+            int iMidValue = (iSegLeft + iSegRight) / 2;
+            pstRoot -> pstNodeLeft  = buildSumSegTree(vecNumList, iSegLeft,      iMidValue);
+            pstRoot -> pstNodeRight = buildSumSegTree(vecNumList, iMidValue + 1, iSegRight);
+            pstRoot -> iSumValue    = pstRoot -> pstNodeLeft -> iSumValue + pstRoot -> pstNodeRight -> iSumValue;
+        }
+        
+        return pstRoot;
+    }
+    
+    void updateSumValue(SumSegTreeNode * pstRoot, int iIndex, int iValue)
+    {
+        if (pstRoot -> iSegLeft == pstRoot -> iSegRight)
+        {
+            pstRoot -> iSumValue = iValue;
+            return;
+        }
+        
+        int iMidValue = (pstRoot -> iSegLeft + pstRoot -> iSegRight) / 2;
+        
+        if (iIndex <= iMidValue)
+        {
+            updateSumValue(pstRoot -> pstNodeLeft, iIndex, iValue);
+        }
+        else
+        {
+            updateSumValue(pstRoot -> pstNodeRight, iIndex, iValue);
+        }
+        
+        pstRoot -> iSumValue = pstRoot -> pstNodeLeft -> iSumValue + pstRoot -> pstNodeRight -> iSumValue;
+    }
+    
+    int getSumValueOfRange(SumSegTreeNode * pstRoot, int iRangeLeft, int iRangeRight)
+    {
+        if (iRangeLeft == pstRoot -> iSegLeft && iRangeRight == pstRoot -> iSegRight)
+        {
+            return pstRoot -> iSumValue;
+        }
+        
+        int iMidValue = (pstRoot -> iSegLeft + pstRoot -> iSegRight) / 2;
+        
+        if (iRangeLeft <= iMidValue && iRangeRight <= iMidValue)
+        {
+            return getSumValueOfRange(pstRoot -> pstNodeLeft, iRangeLeft, iRangeRight);
+        }
+        
+        if (iRangeLeft > iMidValue && iRangeRight > iMidValue)
+        {
+            return getSumValueOfRange(pstRoot -> pstNodeRight, iRangeLeft, iRangeRight);
+        }
+        
+        return getSumValueOfRange(pstRoot -> pstNodeLeft, iRangeLeft, iMidValue) + getSumValueOfRange(pstRoot -> pstNodeRight, iMidValue + 1, iRangeRight);
+    }
+    
+    SumSegTreeNode * m_pstRoot;
 };
 
 /*

@@ -3,27 +3,27 @@ class Solution
 public:
 
     bool containsNearbyAlmostDuplicate(vector<int> & nums, int k, int t)
-	{
-		set<int> setValueInRange;
-		
-		for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
-		{
-			if (iIndex > k)
-			{
-				setValueInRange.erase(nums[iIndex - k - 1]);
-			}
-			
-			set<int>::iterator setIterator = setValueInRange.lower_bound(nums[iIndex] - t);
-			
-			if (setIterator != setValueInRange.end() && *setIterator - nums[iIndex] <= t)
-			{
-				return true;
-			}
-			
-			setValueInRange.insert(nums[iIndex]);
-		}
-		
-		return false;
+    {
+        set<int> setValueInRange;
+        
+        for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
+        {
+            if (iIndex > k)
+            {
+                setValueInRange.erase(nums[iIndex - k - 1]);
+            }
+            
+            set<int>::iterator setIterator = setValueInRange.lower_bound(nums[iIndex] - t);
+            
+            if (setIterator != setValueInRange.end() && *setIterator - nums[iIndex] <= t)
+            {
+                return true;
+            }
+            
+            setValueInRange.insert(nums[iIndex]);
+        }
+        
+        return false;
     }
 };
 

@@ -2,37 +2,37 @@ class Solution
 {
 public:
 
-	int hIndex(vector<int> & citations)
-	{
-		int iStartIndex = 0;
-		int iEndIndex   = citations.size() - 1;
-		
-		while (iStartIndex < iEndIndex)
-		{
-			int iMidIndex = iStartIndex + (iEndIndex - iStartIndex) / 2;
-			
-			if (citations[iMidIndex] <= 0)
-			{
-				iStartIndex = iMidIndex + 1;
-				continue;
-			}
-			
-			if (citations[iMidIndex] >= citations.size() - iMidIndex)
-			{
-				iEndIndex = iMidIndex;
-			}
-			else
-			{
-				iStartIndex = iMidIndex + 1;
-			}
-		}
-		
-		if (iStartIndex == iEndIndex && citations[iStartIndex] > 0)
-		{
-			return citations.size() - iStartIndex;
-		}
-		
-		return 0;
+    int hIndex(vector<int> & citations)
+    {
+        int iStartIndex = 0;
+        int iEndIndex   = citations.size() - 1;
+        
+        while (iStartIndex < iEndIndex)
+        {
+            int iMidIndex = iStartIndex + (iEndIndex - iStartIndex) / 2;
+            
+            if (citations[iMidIndex] <= 0)
+            {
+                iStartIndex = iMidIndex + 1;
+                continue;
+            }
+            
+            if (citations[iMidIndex] >= citations.size() - iMidIndex)
+            {
+                iEndIndex = iMidIndex;
+            }
+            else
+            {
+                iStartIndex = iMidIndex + 1;
+            }
+        }
+        
+        if (iStartIndex == iEndIndex && citations[iStartIndex] > 0)
+        {
+            return citations.size() - iStartIndex;
+        }
+        
+        return 0;
     }
 };
 

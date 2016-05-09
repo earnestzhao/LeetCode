@@ -2,70 +2,70 @@ class NumArray
 {
 public:
     
-	NumArray(vector<int> & nums) 
-	{
-		m_vecNumList = nums;
-		
-		for (int iIndex = 0; iIndex < m_vecNumList.size(); iIndex ++)
-		{
-			m_vecTreeList.push_back(getSumValueOfRange(iIndex - treeSumArea(iIndex + 1) + 1, iIndex - 1) + m_vecNumList[iIndex]);
-		}
+    NumArray(vector<int> & nums) 
+    {
+        m_vecNumList = nums;
+        
+        for (int iIndex = 0; iIndex < m_vecNumList.size(); iIndex ++)
+        {
+            m_vecTreeList.push_back(getSumValueOfRange(iIndex - treeSumArea(iIndex + 1) + 1, iIndex - 1) + m_vecNumList[iIndex]);
+        }
     }
 
     void update(int i, int val)
-	{
-		if (m_vecNumList.size() > 0)
-		{
-			elemPlusValue(i, val - m_vecNumList[i]);
-		}
+    {
+        if (m_vecNumList.size() > 0)
+        {
+            elemPlusValue(i, val - m_vecNumList[i]);
+        }
     }
 
     int sumRange(int i, int j)
-	{
-		if (m_vecNumList.size() > 0)
-		{
-			return getSumValueOfRange(i, j);
-		}
-		
-		return 0;
+    {
+        if (m_vecNumList.size() > 0)
+        {
+            return getSumValueOfRange(i, j);
+        }
+        
+        return 0;
     }
-	
+    
 private:
 
-	vector<int> m_vecNumList;
-	vector<int> m_vecTreeList;
-	
-	void elemPlusValue(int iIndex, int iPlusValue)
-	{
-		m_vecNumList[iIndex] += iPlusValue;
-		
-		for (int iCurrent = iIndex; iCurrent < m_vecTreeList.size(); iCurrent += treeSumArea(iCurrent + 1))
-		{
-			m_vecTreeList[iCurrent] += iPlusValue;
-		}
-	}
-	
-	int getSumValueOfRange(int iRangeStart, int iRangeEnd)
-	{
-		return getSumValue(iRangeEnd) - getSumValue(iRangeStart - 1);
-	}
-	
-	int treeSumArea(int iIndex)
-	{
-		return iIndex & (iIndex ^ (iIndex - 1));
-	}
-	
-	int getSumValue(int iIndex)
-	{
-		int iSumResult = 0;
-		
-		for (int iCurrent = iIndex; iCurrent >= 0; iCurrent -= treeSumArea(iCurrent + 1))
-		{
-			iSumResult += m_vecTreeList[iCurrent];
-		}
-		
-		return iSumResult;
-	}
+    vector<int> m_vecNumList;
+    vector<int> m_vecTreeList;
+    
+    void elemPlusValue(int iIndex, int iPlusValue)
+    {
+        m_vecNumList[iIndex] += iPlusValue;
+        
+        for (int iCurrent = iIndex; iCurrent < m_vecTreeList.size(); iCurrent += treeSumArea(iCurrent + 1))
+        {
+            m_vecTreeList[iCurrent] += iPlusValue;
+        }
+    }
+    
+    int getSumValueOfRange(int iRangeStart, int iRangeEnd)
+    {
+        return getSumValue(iRangeEnd) - getSumValue(iRangeStart - 1);
+    }
+    
+    int treeSumArea(int iIndex)
+    {
+        return iIndex & (iIndex ^ (iIndex - 1));
+    }
+    
+    int getSumValue(int iIndex)
+    {
+        int iSumResult = 0;
+        
+        for (int iCurrent = iIndex; iCurrent >= 0; iCurrent -= treeSumArea(iCurrent + 1))
+        {
+            iSumResult += m_vecTreeList[iCurrent];
+        }
+        
+        return iSumResult;
+    }
 };
 
 /*

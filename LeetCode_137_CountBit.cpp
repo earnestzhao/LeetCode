@@ -2,33 +2,33 @@ class Solution
 {
 public:
 
-	int singleNumber(vector<int> & nums)
-	{
-		int aiBitCount[sizeof(int) * 8] = { 0 };
-		
-		for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
-		{
-			for (int iCurrent = nums[iIndex], iBitIndex = 0; iBitIndex < sizeof(int) * 8; iBitIndex ++)
-			{
-				if (iCurrent & (1 << iBitIndex))
-				{
-					aiBitCount[iBitIndex] ++;
-				}
-			}
-		}
-		
-		int iResultNumber = 0;
-		
-		for (int iIndex = 0; iIndex < sizeof(int) * 8; iIndex ++)
-		{
-			if (aiBitCount[iIndex] % 3)
-			{
-				iResultNumber |= (1 << iIndex);
-			}
-		}
-		
-		return iResultNumber;
-	}
+    int singleNumber(vector<int> & nums)
+    {
+        int aiBitCount[sizeof(int) * 8] = { 0 };
+        
+        for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
+        {
+            for (int iCurrent = nums[iIndex], iBitIndex = 0; iBitIndex < sizeof(int) * 8; iBitIndex ++)
+            {
+                if (iCurrent & (1 << iBitIndex))
+                {
+                    aiBitCount[iBitIndex] ++;
+                }
+            }
+        }
+        
+        int iResultNumber = 0;
+        
+        for (int iIndex = 0; iIndex < sizeof(int) * 8; iIndex ++)
+        {
+            if (aiBitCount[iIndex] % 3)
+            {
+                iResultNumber |= (1 << iIndex);
+            }
+        }
+        
+        return iResultNumber;
+    }
 };
 
 /*
@@ -59,10 +59,10 @@ public:
 
 for (int iCurrent = nums[iIndex], iBitIndex = 0; iCurrent != 0; iCurrent >>= 1, iBitIndex ++)
 {
-	if (iCurrent & 0x1)
-	{
-		aiBitCount[iBitIndex] ++;
-	}
+    if (iCurrent & 0x1)
+    {
+        aiBitCount[iBitIndex] ++;
+    }
 }
 
 */

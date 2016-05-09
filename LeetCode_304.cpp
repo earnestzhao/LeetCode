@@ -2,52 +2,52 @@ class NumMatrix
 {
 public:
 
-	NumMatrix(vector<vector<int>> & matrix)
-	{
-		for (int iIndex = 0; iIndex < matrix.size(); iIndex ++)
-		{
-			m_vecMatrixSum.push_back(vector<int>());
-			
-			for (int jIndex = 0; jIndex < matrix[iIndex].size(); jIndex ++)
-			{
-				if (jIndex == 0)
-				{
-					m_vecMatrixSum[iIndex].push_back(matrix[iIndex][jIndex]);
-				}
-				else
-				{
-					m_vecMatrixSum[iIndex].push_back(matrix[iIndex][jIndex] + m_vecMatrixSum[iIndex][jIndex - 1]);
-				}
-			}
-		}
-		
-		for (int iIndex = 1; iIndex < m_vecMatrixSum.size(); iIndex ++)
-		{
-			for (int jIndex = 0; jIndex < m_vecMatrixSum[iIndex].size(); jIndex ++)
-			{
-				m_vecMatrixSum[iIndex][jIndex] += m_vecMatrixSum[iIndex - 1][jIndex];
-			}
-		}
+    NumMatrix(vector<vector<int>> & matrix)
+    {
+        for (int iIndex = 0; iIndex < matrix.size(); iIndex ++)
+        {
+            m_vecMatrixSum.push_back(vector<int>());
+            
+            for (int jIndex = 0; jIndex < matrix[iIndex].size(); jIndex ++)
+            {
+                if (jIndex == 0)
+                {
+                    m_vecMatrixSum[iIndex].push_back(matrix[iIndex][jIndex]);
+                }
+                else
+                {
+                    m_vecMatrixSum[iIndex].push_back(matrix[iIndex][jIndex] + m_vecMatrixSum[iIndex][jIndex - 1]);
+                }
+            }
+        }
+        
+        for (int iIndex = 1; iIndex < m_vecMatrixSum.size(); iIndex ++)
+        {
+            for (int jIndex = 0; jIndex < m_vecMatrixSum[iIndex].size(); jIndex ++)
+            {
+                m_vecMatrixSum[iIndex][jIndex] += m_vecMatrixSum[iIndex - 1][jIndex];
+            }
+        }
     }
 
     int sumRegion(int row1, int col1, int row2, int col2)
-	{
-		return getSumValue(row2, col2) - getSumValue(row1 - 1, col2) - getSumValue(row2, col1 - 1) + getSumValue(row1 - 1, col1 - 1);
+    {
+        return getSumValue(row2, col2) - getSumValue(row1 - 1, col2) - getSumValue(row2, col1 - 1) + getSumValue(row1 - 1, col1 - 1);
     }
-	
+    
 private:
 
-	vector<vector<int>> m_vecMatrixSum;
-	
-	int getSumValue(int iRowIndex, int iColIndex)
-	{
-		if (iRowIndex < 0 || iColIndex < 0)
-		{
-			return 0;
-		}
-		
-		return m_vecMatrixSum[iRowIndex][iColIndex];
-	}
+    vector<vector<int>> m_vecMatrixSum;
+    
+    int getSumValue(int iRowIndex, int iColIndex)
+    {
+        if (iRowIndex < 0 || iColIndex < 0)
+        {
+            return 0;
+        }
+        
+        return m_vecMatrixSum[iRowIndex][iColIndex];
+    }
 };
 
 /*

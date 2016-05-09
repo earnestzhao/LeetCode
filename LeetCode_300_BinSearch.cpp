@@ -3,64 +3,64 @@ class Solution
 public:
 
     int lengthOfLIS(vector<int> & nums)
-	{
-		if (nums.size() <= 0)
-		{
-			return 0;
-		}
-		
-		if (nums.size() == 1)
-		{
-			return 1;
-		}
-		
-		vector<int> vecResultNumList;
-		vecResultNumList.push_back(nums[0]);
-		
-		for (int iIndex = 1; iIndex < nums.size(); iIndex ++)
-		{
-			if (vecResultNumList[vecResultNumList.size() - 1] < nums[iIndex])
-			{
-				vecResultNumList.push_back(nums[iIndex]);
-			}
-			
-			if (vecResultNumList[vecResultNumList.size() - 1] > nums[iIndex])
-			{
-				BinaryReplaceFirstBigger(vecResultNumList, nums[iIndex]);
-			}
-		}
-		
-		return vecResultNumList.size();
+    {
+        if (nums.size() <= 0)
+        {
+            return 0;
+        }
+        
+        if (nums.size() == 1)
+        {
+            return 1;
+        }
+        
+        vector<int> vecResultNumList;
+        vecResultNumList.push_back(nums[0]);
+        
+        for (int iIndex = 1; iIndex < nums.size(); iIndex ++)
+        {
+            if (vecResultNumList[vecResultNumList.size() - 1] < nums[iIndex])
+            {
+                vecResultNumList.push_back(nums[iIndex]);
+            }
+            
+            if (vecResultNumList[vecResultNumList.size() - 1] > nums[iIndex])
+            {
+                BinaryReplaceFirstBigger(vecResultNumList, nums[iIndex]);
+            }
+        }
+        
+        return vecResultNumList.size();
     }
-	
+    
 private:
 
-	void BinaryReplaceFirstBigger(vector<int> & vecList, int iValue)
-	{
-		int iStartIndex = 0;
-		int iEndIndex   = vecList.size() - 1;
-		
-		while (iStartIndex <= iEndIndex)
-		{
-			int iMidIndex = (iStartIndex + iEndIndex) / 2;
-			
-			if (iValue > vecList[iMidIndex])
-			{
-				iStartIndex = iMidIndex + 1;
-			}
-			else if (iValue < vecList[iMidIndex])
-			{
-				iEndIndex = iMidIndex - 1;
-			}
-			else
-			{
-				iStartIndex = iMidIndex;
-				break;
-			}
-		}
-		
-		vecList[iStartIndex] = iValue;
-	}
+    void BinaryReplaceFirstBigger(vector<int> & vecList, int iValue)
+    {
+        int iStartIndex = 0;
+        int iEndIndex   = vecList.size() - 1;
+        
+        while (iStartIndex <= iEndIndex)
+        {
+            int iMidIndex = (iStartIndex + iEndIndex) / 2;
+            
+            if (iValue > vecList[iMidIndex])
+            {
+                iStartIndex = iMidIndex + 1;
+            }
+            else if (iValue < vecList[iMidIndex])
+            {
+                iEndIndex = iMidIndex - 1;
+            }
+            else
+            {
+                iStartIndex = iMidIndex;
+                break;
+            }
+        }
+        
+        vecList[iStartIndex] = iValue;
+    }
 };
 
 /*

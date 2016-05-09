@@ -2,83 +2,83 @@ class Solution
 {
 public:
 
-	vector<int> diffWaysToCompute(string input)
-	{
-		if (input.length() <= 0)
-		{
-			return vector<int>(1, 0);
-		}
-		
-		if (input.length() == 1)
-		{
-			return vector<int>(1, input[0] - '0');
-		}
-		
-		return dfCompute(input, 0, input.length() - 1);
+    vector<int> diffWaysToCompute(string input)
+    {
+        if (input.length() <= 0)
+        {
+            return vector<int>(1, 0);
+        }
+        
+        if (input.length() == 1)
+        {
+            return vector<int>(1, input[0] - '0');
+        }
+        
+        return dfCompute(input, 0, input.length() - 1);
     }
-	
+    
 private:
 
-	vector<int> dfCompute(const string & strInput, int iStartIndex, int iEndIndex)
-	{
-		if (iStartIndex > iEndIndex)
-		{
-			return vector<int>();
-		}
-		
-		if (iStartIndex == iEndIndex)
-		{
-			return vector<int>(1, strInput[iStartIndex] - '0');
-		}
-		
-		int iStoreIndex = iStartIndex * strInput.size() + iEndIndex;
-		
-		map<int, vector<int>>::iterator mapIterator = m_mapComputeResult.find(iStoreIndex);
-		
-		if (mapIterator != m_mapComputeResult.end())
-		{
-			return mapIterator -> second;
-		}
-		
-		bool bSingleNumber = true;
-		
-		vector<int> vecCurrentResult;
-		
-		for (int iIndex = iStartIndex; iIndex <= iEndIndex; iIndex ++)
-		{
-			if (strInput[iIndex] == '+' || strInput[iIndex] == '-' || strInput[iIndex] == '*')
-			{
-				bSingleNumber = false;
-				vector<int> vecLeftResult  = dfCompute(strInput, iStartIndex, iIndex - 1);
-				vector<int> vecRightResult = dfCompute(strInput, iIndex + 1,  iEndIndex);
-				
-				for (int jIndex = 0; jIndex < vecLeftResult.size(); jIndex ++)
-				{
-					for (int kIndex = 0; kIndex < vecRightResult.size(); kIndex ++)
-					{
-						switch (strInput[iIndex])
-						{
-							case '+': vecCurrentResult.push_back(vecLeftResult[jIndex] + vecRightResult[kIndex]); break;
-							case '-': vecCurrentResult.push_back(vecLeftResult[jIndex] - vecRightResult[kIndex]); break;
-							case '*': vecCurrentResult.push_back(vecLeftResult[jIndex] * vecRightResult[kIndex]); break;
-							default:  return vector<int>();
-						}
-					}
-				}
-			}
-			
-			if (iIndex == iEndIndex && bSingleNumber)
-			{
-				vecCurrentResult.clear();
-				vecCurrentResult.push_back(atoi(strInput.substr(iStartIndex, iEndIndex - iStartIndex + 1).c_str()));
-			}
-		}
-		
-		m_mapComputeResult[iStoreIndex] = vecCurrentResult;
-		return vecCurrentResult;
-	}
-	
-	map<int, vector<int>> m_mapComputeResult;
+    vector<int> dfCompute(const string & strInput, int iStartIndex, int iEndIndex)
+    {
+        if (iStartIndex > iEndIndex)
+        {
+            return vector<int>();
+        }
+        
+        if (iStartIndex == iEndIndex)
+        {
+            return vector<int>(1, strInput[iStartIndex] - '0');
+        }
+        
+        int iStoreIndex = iStartIndex * strInput.size() + iEndIndex;
+        
+        map<int, vector<int>>::iterator mapIterator = m_mapComputeResult.find(iStoreIndex);
+        
+        if (mapIterator != m_mapComputeResult.end())
+        {
+            return mapIterator -> second;
+        }
+        
+        bool bSingleNumber = true;
+        
+        vector<int> vecCurrentResult;
+        
+        for (int iIndex = iStartIndex; iIndex <= iEndIndex; iIndex ++)
+        {
+            if (strInput[iIndex] == '+' || strInput[iIndex] == '-' || strInput[iIndex] == '*')
+            {
+                bSingleNumber = false;
+                vector<int> vecLeftResult  = dfCompute(strInput, iStartIndex, iIndex - 1);
+                vector<int> vecRightResult = dfCompute(strInput, iIndex + 1,  iEndIndex);
+                
+                for (int jIndex = 0; jIndex < vecLeftResult.size(); jIndex ++)
+                {
+                    for (int kIndex = 0; kIndex < vecRightResult.size(); kIndex ++)
+                    {
+                        switch (strInput[iIndex])
+                        {
+                            case '+': vecCurrentResult.push_back(vecLeftResult[jIndex] + vecRightResult[kIndex]); break;
+                            case '-': vecCurrentResult.push_back(vecLeftResult[jIndex] - vecRightResult[kIndex]); break;
+                            case '*': vecCurrentResult.push_back(vecLeftResult[jIndex] * vecRightResult[kIndex]); break;
+                            default:  return vector<int>();
+                        }
+                    }
+                }
+            }
+            
+            if (iIndex == iEndIndex && bSingleNumber)
+            {
+                vecCurrentResult.clear();
+                vecCurrentResult.push_back(atoi(strInput.substr(iStartIndex, iEndIndex - iStartIndex + 1).c_str()));
+            }
+        }
+        
+        m_mapComputeResult[iStoreIndex] = vecCurrentResult;
+        return vecCurrentResult;
+    }
+    
+    map<int, vector<int>> m_mapComputeResult;
 };
 
 /*

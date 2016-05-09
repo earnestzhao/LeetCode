@@ -3,25 +3,25 @@ class Solution
 public:
 
     int majorityElement(vector<int> & nums)
-	{
-		int aiBitCount[2][sizeof(int) * 8] = { { 0 } };
-		
-		for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
-		{
-			for (int jIndex = 0; jIndex < sizeof(int) * 8; jIndex ++)
-			{
-				aiBitCount[!!(nums[iIndex] & (1 << jIndex))][jIndex] ++;
-			}
-		}
-		
-		int iResultValue = 0;
-		
-		for (int iIndex = 0; iIndex < sizeof(int) * 8; iIndex ++)
-		{
-			iResultValue |= ((aiBitCount[1][iIndex] > aiBitCount[0][iIndex]) << iIndex);
-		}
-		
-		return iResultValue;
+    {
+        int aiBitCount[2][sizeof(int) * 8] = { { 0 } };
+        
+        for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
+        {
+            for (int jIndex = 0; jIndex < sizeof(int) * 8; jIndex ++)
+            {
+                aiBitCount[!!(nums[iIndex] & (1 << jIndex))][jIndex] ++;
+            }
+        }
+        
+        int iResultValue = 0;
+        
+        for (int iIndex = 0; iIndex < sizeof(int) * 8; iIndex ++)
+        {
+            iResultValue |= ((aiBitCount[1][iIndex] > aiBitCount[0][iIndex]) << iIndex);
+        }
+        
+        return iResultValue;
     }
 };
 

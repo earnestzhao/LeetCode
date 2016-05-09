@@ -3,18 +3,18 @@ class Solution
 public:
 
     int hIndex(vector<int> & citations)
-	{
-		sort(citations.begin(), citations.end());
-		
-		for (int iIndex = 0; iIndex < citations.size(); iIndex ++)
-		{
-			if (citations[iIndex] >= citations.size() - iIndex)
-			{
-				return citations.size() - iIndex;
-			}
-		}
-		
-		return 0;
+    {
+        sort(citations.begin(), citations.end());
+        
+        for (int iIndex = 0; iIndex < citations.size(); iIndex ++)
+        {
+            if (citations[iIndex] >= citations.size() - iIndex)
+            {
+                return citations.size() - iIndex;
+            }
+        }
+        
+        return 0;
     }
 };
 

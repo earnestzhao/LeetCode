@@ -13,72 +13,72 @@ class Solution
 {
 public:
 
-	TreeNode * lowestCommonAncestor(TreeNode * root, TreeNode * p, TreeNode * q)
-	{
-		if (root == NULL)
-		{
-			return NULL;
-		}
-		
-		if (p == NULL)
-		{
-			return q;
-		}
-		
-		if (q == NULL)
-		{
-			return p;
-		}
-		
-		midRootTraversal(root);
-		
-		for (TreeNode * pstCurrent = root; pstCurrent != NULL;)
-		{
-			if (m_mapTraversalNodeIndex[p] == m_mapTraversalNodeIndex[pstCurrent] || m_mapTraversalNodeIndex[q] == m_mapTraversalNodeIndex[pstCurrent])
-			{
-				return pstCurrent;
-			}
-			
-			if ((m_mapTraversalNodeIndex[p] <= m_mapTraversalNodeIndex[pstCurrent] && m_mapTraversalNodeIndex[q] >= m_mapTraversalNodeIndex[pstCurrent])
-			 || (m_mapTraversalNodeIndex[q] <= m_mapTraversalNodeIndex[pstCurrent] && m_mapTraversalNodeIndex[p] >= m_mapTraversalNodeIndex[pstCurrent]))
-			{
-				return pstCurrent;
-			}
-			
-			if (m_mapTraversalNodeIndex[p] < m_mapTraversalNodeIndex[pstCurrent] && m_mapTraversalNodeIndex[q] < m_mapTraversalNodeIndex[pstCurrent])
-			{
-				pstCurrent = pstCurrent -> left;
-			}
-			else
-			{
-				pstCurrent = pstCurrent -> right;
-			}
-		}
-		
-		return NULL;
+    TreeNode * lowestCommonAncestor(TreeNode * root, TreeNode * p, TreeNode * q)
+    {
+        if (root == NULL)
+        {
+            return NULL;
+        }
+        
+        if (p == NULL)
+        {
+            return q;
+        }
+        
+        if (q == NULL)
+        {
+            return p;
+        }
+        
+        midRootTraversal(root);
+        
+        for (TreeNode * pstCurrent = root; pstCurrent != NULL;)
+        {
+            if (m_mapTraversalNodeIndex[p] == m_mapTraversalNodeIndex[pstCurrent] || m_mapTraversalNodeIndex[q] == m_mapTraversalNodeIndex[pstCurrent])
+            {
+                return pstCurrent;
+            }
+            
+            if ((m_mapTraversalNodeIndex[p] <= m_mapTraversalNodeIndex[pstCurrent] && m_mapTraversalNodeIndex[q] >= m_mapTraversalNodeIndex[pstCurrent])
+             || (m_mapTraversalNodeIndex[q] <= m_mapTraversalNodeIndex[pstCurrent] && m_mapTraversalNodeIndex[p] >= m_mapTraversalNodeIndex[pstCurrent]))
+            {
+                return pstCurrent;
+            }
+            
+            if (m_mapTraversalNodeIndex[p] < m_mapTraversalNodeIndex[pstCurrent] && m_mapTraversalNodeIndex[q] < m_mapTraversalNodeIndex[pstCurrent])
+            {
+                pstCurrent = pstCurrent -> left;
+            }
+            else
+            {
+                pstCurrent = pstCurrent -> right;
+            }
+        }
+        
+        return NULL;
     }
-	
+    
 private:
-	
-	void midRootTraversal(TreeNode * pstRoot)
-	{
-		if (pstRoot == NULL)
-		{
-			return;
-		}
-		
-		midRootTraversal(pstRoot -> left);
-		
-		m_vecTraversalList.push_back(pstRoot);
-		
-		m_mapTraversalNodeIndex[pstRoot] = m_vecTraversalList.size() - 1;
-		
-		midRootTraversal(pstRoot -> right);
-	}
+    
+    void midRootTraversal(TreeNode * pstRoot)
+    {
+        if (pstRoot == NULL)
+        {
+            return;
+        }
+        
+        midRootTraversal(pstRoot -> left);
+        
+        m_vecTraversalList.push_back(pstRoot);
+        
+        m_mapTraversalNodeIndex[pstRoot] = m_vecTraversalList.size() - 1;
+        
+        midRootTraversal(pstRoot -> right);
+    }
 
-	vector<TreeNode *> m_vecTraversalList;
-	
-	map<TreeNode *, int> m_mapTraversalNodeIndex;
+    vector<TreeNode *> m_vecTraversalList;
+    
+    map<TreeNode *, int> m_mapTraversalNodeIndex;
 };
 
 /*

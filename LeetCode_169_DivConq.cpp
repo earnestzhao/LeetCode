@@ -3,68 +3,68 @@ class Solution
 public:
 
     int majorityElement(vector<int> & nums)
-	{
-		return majorityElement(nums, 0, nums.size() - 1);
+    {
+        return majorityElement(nums, 0, nums.size() - 1);
     }
-	
+    
 private:
 
-	enum { MIN_INT = 0x80000001 };
+    enum { MIN_INT = 0x80000001 };
 
-	int majorityElement(vector<int> & nums, int iStartIndex, int iEndIndex)
-	{
-		if (iStartIndex > iEndIndex)
-		{
-			return MIN_INT;
-		}
-		
-		if (iStartIndex == iEndIndex)
-		{
-			return nums[iStartIndex];
-		}
-		
-		int iMidIndex   = iStartIndex + (iEndIndex - iStartIndex) / 2;
-		int iLeftMElem  = majorityElement(nums, iStartIndex,   iMidIndex);
-		int iRightMElem = majorityElement(nums, iMidIndex + 1, iEndIndex);
-		
-		if (iLeftMElem == MIN_INT)
-		{
-			return iRightMElem;
-		}
-		
-		if (iRightMElem == MIN_INT)
-		{
-			return iLeftMElem;
-		}
-		
-		if (iLeftMElem == iRightMElem)
-		{
-			return iLeftMElem;
-		}
-		
-		int iLeftCount  = 0;
-		int iRightCount = 0;
-		
-		for (int iIndex = iStartIndex; iIndex <= iEndIndex; iIndex ++)
-		{
-			if (nums[iIndex] == iLeftMElem)
-			{
-				iLeftCount ++;
-			}
-			
-			if (nums[iIndex] == iRightMElem)
-			{
-				iRightCount ++;
-			}
-		}
-		
-		if (iLeftCount > iRightCount)
-		{
-			return iLeftMElem;
-		}
-		
-		return iRightMElem;
-	}
+    int majorityElement(vector<int> & nums, int iStartIndex, int iEndIndex)
+    {
+        if (iStartIndex > iEndIndex)
+        {
+            return MIN_INT;
+        }
+        
+        if (iStartIndex == iEndIndex)
+        {
+            return nums[iStartIndex];
+        }
+        
+        int iMidIndex   = iStartIndex + (iEndIndex - iStartIndex) / 2;
+        int iLeftMElem  = majorityElement(nums, iStartIndex,   iMidIndex);
+        int iRightMElem = majorityElement(nums, iMidIndex + 1, iEndIndex);
+        
+        if (iLeftMElem == MIN_INT)
+        {
+            return iRightMElem;
+        }
+        
+        if (iRightMElem == MIN_INT)
+        {
+            return iLeftMElem;
+        }
+        
+        if (iLeftMElem == iRightMElem)
+        {
+            return iLeftMElem;
+        }
+        
+        int iLeftCount  = 0;
+        int iRightCount = 0;
+        
+        for (int iIndex = iStartIndex; iIndex <= iEndIndex; iIndex ++)
+        {
+            if (nums[iIndex] == iLeftMElem)
+            {
+                iLeftCount ++;
+            }
+            
+            if (nums[iIndex] == iRightMElem)
+            {
+                iRightCount ++;
+            }
+        }
+        
+        if (iLeftCount > iRightCount)
+        {
+            return iLeftMElem;
+        }
+        
+        return iRightMElem;
+    }
 };
 
 /*

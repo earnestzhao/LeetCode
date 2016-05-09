@@ -13,72 +13,72 @@ class Solution
 public:
 
     int rob(TreeNode * root)
-	{
-		int iRootRobValue    = rob(root, true);
-		int iRootNotRobValue = rob(root, false);
-		return iRootRobValue > iRootNotRobValue ? iRootRobValue : iRootNotRobValue;
-	}
+    {
+        int iRootRobValue    = rob(root, true);
+        int iRootNotRobValue = rob(root, false);
+        return iRootRobValue > iRootNotRobValue ? iRootRobValue : iRootNotRobValue;
+    }
 
 private:
 
-	int rob(TreeNode * pstRoot, bool bRootRob)
-	{
-		if (pstRoot == NULL)
-		{
-			return 0;
-		}
-		
-		if (bRootRob && m_mapMaxValueRootRobTrue.find(pstRoot) != m_mapMaxValueRootRobTrue.end())
-		{
-			return m_mapMaxValueRootRobTrue[pstRoot];
-		}
-		
-		if (!bRootRob && m_mapMaxValueRootRobFalse.find(pstRoot) != m_mapMaxValueRootRobFalse.end())
-		{
-			return m_mapMaxValueRootRobFalse[pstRoot];
-		}
-		
-		int iMaxValue      = 0;
-		int iRobLeftFalse  = rob(pstRoot -> left,  false);
-		int iRobRightFalse = rob(pstRoot -> right, false);
-		
-		if (bRootRob)
-		{
-			iMaxValue = pstRoot -> val + iRobLeftFalse + iRobRightFalse;
-			m_mapMaxValueRootRobTrue[pstRoot] = iMaxValue;
-		}
-		else
-		{
-			int iRobLeftTrue  = rob(pstRoot -> left,  true);
-			int iRobRightTrue = rob(pstRoot -> right, true);
-			
-			iMaxValue = iRobLeftTrue + iRobRightTrue;
-			
-			if (iMaxValue < iRobLeftTrue + iRobRightFalse)
-			{
-				iMaxValue = iRobLeftTrue + iRobRightFalse;
-			}
-			
-			if (iMaxValue < iRobLeftFalse + iRobRightTrue)
-			{
-				iMaxValue = iRobLeftFalse + iRobRightTrue;
-			}
-			
-			if (iMaxValue < iRobLeftFalse + iRobRightFalse)
-			{
-				iMaxValue = iRobLeftFalse + iRobRightFalse;
-			}
-			
-			m_mapMaxValueRootRobFalse[pstRoot] = iMaxValue;
-		}
-		
-		return iMaxValue;
-	}
-	
+    int rob(TreeNode * pstRoot, bool bRootRob)
+    {
+        if (pstRoot == NULL)
+        {
+            return 0;
+        }
+        
+        if (bRootRob && m_mapMaxValueRootRobTrue.find(pstRoot) != m_mapMaxValueRootRobTrue.end())
+        {
+            return m_mapMaxValueRootRobTrue[pstRoot];
+        }
+        
+        if (!bRootRob && m_mapMaxValueRootRobFalse.find(pstRoot) != m_mapMaxValueRootRobFalse.end())
+        {
+            return m_mapMaxValueRootRobFalse[pstRoot];
+        }
+        
+        int iMaxValue      = 0;
+        int iRobLeftFalse  = rob(pstRoot -> left,  false);
+        int iRobRightFalse = rob(pstRoot -> right, false);
+        
+        if (bRootRob)
+        {
+            iMaxValue = pstRoot -> val + iRobLeftFalse + iRobRightFalse;
+            m_mapMaxValueRootRobTrue[pstRoot] = iMaxValue;
+        }
+        else
+        {
+            int iRobLeftTrue  = rob(pstRoot -> left,  true);
+            int iRobRightTrue = rob(pstRoot -> right, true);
+            
+            iMaxValue = iRobLeftTrue + iRobRightTrue;
+            
+            if (iMaxValue < iRobLeftTrue + iRobRightFalse)
+            {
+                iMaxValue = iRobLeftTrue + iRobRightFalse;
+            }
+            
+            if (iMaxValue < iRobLeftFalse + iRobRightTrue)
+            {
+                iMaxValue = iRobLeftFalse + iRobRightTrue;
+            }
+            
+            if (iMaxValue < iRobLeftFalse + iRobRightFalse)
+            {
+                iMaxValue = iRobLeftFalse + iRobRightFalse;
+            }
+            
+            m_mapMaxValueRootRobFalse[pstRoot] = iMaxValue;
+        }
+        
+        return iMaxValue;
+    }
+    
 private:
 
-	map<TreeNode *, int> m_mapMaxValueRootRobTrue;
-	map<TreeNode *, int> m_mapMaxValueRootRobFalse;
+    map<TreeNode *, int> m_mapMaxValueRootRobTrue;
+    map<TreeNode *, int> m_mapMaxValueRootRobFalse;
 };
 
 /*

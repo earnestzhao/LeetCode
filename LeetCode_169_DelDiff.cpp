@@ -3,31 +3,31 @@ class Solution
 public:
 
     int majorityElement(vector<int> & nums)
-	{
-		int iCurrElem  = 0;
-		int iCurrCount = 0;
-		
-		for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
-		{
-			if (iCurrCount <= 0)
-			{
-				iCurrElem  = nums[iIndex];
-				iCurrCount = 1;
-			}
-			else
-			{
-				if (iCurrElem == nums[iIndex])
-				{
-					iCurrCount ++;
-				}
-				else
-				{
-					iCurrCount --;
-				}
-			}
-		}
-		
-		return iCurrElem;
+    {
+        int iCurrElem  = 0;
+        int iCurrCount = 0;
+        
+        for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
+        {
+            if (iCurrCount <= 0)
+            {
+                iCurrElem  = nums[iIndex];
+                iCurrCount = 1;
+            }
+            else
+            {
+                if (iCurrElem == nums[iIndex])
+                {
+                    iCurrCount ++;
+                }
+                else
+                {
+                    iCurrCount --;
+                }
+            }
+        }
+        
+        return iCurrElem;
     }
 };
 

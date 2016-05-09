@@ -2,30 +2,30 @@ class Solution
 {
 public:
 
-	vector<int> countBits(int num)
-	{
-		vector<int> vecResult;
-		vecResult.push_back(0);
-		
-		for (int iSquareNum = 1; num > 0; iSquareNum <<= 1)
-		{
-			for (int iIndex = 0; iIndex < iSquareNum; iIndex ++)
-			{
-				vecResult.push_back(vecResult[iIndex] + 1);
-				
-				if (vecResult.size() >= num + 1)
-				{
-					break;
-				}
-			}
-			
-			if (vecResult.size() >= num + 1)
-			{
-				break;
-			}
-		}
-		
-		return vecResult;
+    vector<int> countBits(int num)
+    {
+        vector<int> vecResult;
+        vecResult.push_back(0);
+        
+        for (int iSquareNum = 1; num > 0; iSquareNum <<= 1)
+        {
+            for (int iIndex = 0; iIndex < iSquareNum; iIndex ++)
+            {
+                vecResult.push_back(vecResult[iIndex] + 1);
+                
+                if (vecResult.size() >= num + 1)
+                {
+                    break;
+                }
+            }
+            
+            if (vecResult.size() >= num + 1)
+            {
+                break;
+            }
+        }
+        
+        return vecResult;
     }
 };
 

@@ -3,47 +3,47 @@ class Solution
 public:
 
     vector<int> singleNumber(vector<int> & nums)
-	{
-		if (nums.size() <= 2)
-		{
-			return nums;
-		}
-		
-		int iXorResult = nums[0];
-		
-		for (int iIndex = 1; iIndex < nums.size(); iIndex ++)
-		{
-			iXorResult ^= nums[iIndex];
-		}
-		
-		int iBitOneFirstPosition = 0;
-		
-		for (int iPos = 0; iPos < sizeof(int) * 8; iPos ++)
-		{
-			if (iXorResult & (1 << iPos))
-			{
-				iBitOneFirstPosition = iPos;
-				break;
-			}
-		}
-		
-		vector<int> vecResult;
-		vecResult.push_back(0);
-		vecResult.push_back(0);
-		
-		for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
-		{
-			if (nums[iIndex] & (1 << iBitOneFirstPosition))
-			{
-				vecResult[1] ^= nums[iIndex];
-			}
-			else
-			{
-				vecResult[0] ^= nums[iIndex];
-			}
-		}
-		
-		return vecResult;
+    {
+        if (nums.size() <= 2)
+        {
+            return nums;
+        }
+        
+        int iXorResult = nums[0];
+        
+        for (int iIndex = 1; iIndex < nums.size(); iIndex ++)
+        {
+            iXorResult ^= nums[iIndex];
+        }
+        
+        int iBitOneFirstPosition = 0;
+        
+        for (int iPos = 0; iPos < sizeof(int) * 8; iPos ++)
+        {
+            if (iXorResult & (1 << iPos))
+            {
+                iBitOneFirstPosition = iPos;
+                break;
+            }
+        }
+        
+        vector<int> vecResult;
+        vecResult.push_back(0);
+        vecResult.push_back(0);
+        
+        for (int iIndex = 0; iIndex < nums.size(); iIndex ++)
+        {
+            if (nums[iIndex] & (1 << iBitOneFirstPosition))
+            {
+                vecResult[1] ^= nums[iIndex];
+            }
+            else
+            {
+                vecResult[0] ^= nums[iIndex];
+            }
+        }
+        
+        return vecResult;
     }
 };
 

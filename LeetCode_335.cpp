@@ -2,32 +2,32 @@ class Solution
 {
 public:
 
-	bool isSelfCrossing(vector<int> & x)
-	{
-		if (x.size() <= 3)
-		{
-			return false;
-		}
-		
-		for (int iIndex = 3; iIndex < x.size(); iIndex ++)
-		{
-			if (x[iIndex] >= x[iIndex - 2] && x[iIndex - 3] >= x[iIndex - 1])
-			{
-				return true;
-			}
-			
-			if (iIndex >= 4 && x[iIndex - 1] == x[iIndex - 3] && x[iIndex - 4] + x[iIndex] >= x[iIndex - 2])
-			{
-				return true;
-			}
-			
-			if (iIndex >= 5 && x[iIndex - 2] > x[iIndex - 4] && x[iIndex - 1] <= x[iIndex - 3] && x[iIndex - 1] + x[iIndex - 5] >= x[iIndex - 3] && x[iIndex] >= x[iIndex - 2] - x[iIndex - 4])
-			{
-				return true;
-			}
-		}
-		
-		return false;
+    bool isSelfCrossing(vector<int> & x)
+    {
+        if (x.size() <= 3)
+        {
+            return false;
+        }
+        
+        for (int iIndex = 3; iIndex < x.size(); iIndex ++)
+        {
+            if (x[iIndex] >= x[iIndex - 2] && x[iIndex - 3] >= x[iIndex - 1])
+            {
+                return true;
+            }
+            
+            if (iIndex >= 4 && x[iIndex - 1] == x[iIndex - 3] && x[iIndex - 4] + x[iIndex] >= x[iIndex - 2])
+            {
+                return true;
+            }
+            
+            if (iIndex >= 5 && x[iIndex - 2] > x[iIndex - 4] && x[iIndex - 1] <= x[iIndex - 3] && x[iIndex - 1] + x[iIndex - 5] >= x[iIndex - 3] && x[iIndex] >= x[iIndex - 2] - x[iIndex - 4])
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
 };
 

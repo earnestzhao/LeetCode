@@ -13,33 +13,33 @@ class Solution
 {
 public:
 
-	int kthSmallest(TreeNode* root, int k)
-	{	
-		if (m_vecMidRootTraversal.size() >= k)
-		{
-			return m_vecMidRootTraversal[k - 1];
-		}
-		
-		if (root == NULL)
-		{
-			return 0;
-		}
-		
-		kthSmallest(root -> left, k);
-		
-		m_vecMidRootTraversal.push_back(root -> val);
-		
-		if (m_vecMidRootTraversal.size() >= k)
-		{
-			return m_vecMidRootTraversal[k - 1];
-		}
-		
-		kthSmallest(root -> right, k);
+    int kthSmallest(TreeNode* root, int k)
+    {   
+        if (m_vecMidRootTraversal.size() >= k)
+        {
+            return m_vecMidRootTraversal[k - 1];
+        }
+        
+        if (root == NULL)
+        {
+            return 0;
+        }
+        
+        kthSmallest(root -> left, k);
+        
+        m_vecMidRootTraversal.push_back(root -> val);
+        
+        if (m_vecMidRootTraversal.size() >= k)
+        {
+            return m_vecMidRootTraversal[k - 1];
+        }
+        
+        kthSmallest(root -> right, k);
     }
-	
+    
 private:
 
-	vector<int> m_vecMidRootTraversal;
+    vector<int> m_vecMidRootTraversal;
 };
 
 /*

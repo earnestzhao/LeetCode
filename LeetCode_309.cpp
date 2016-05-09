@@ -3,35 +3,35 @@ class Solution
 public:
 
     int maxProfit(vector<int> & prices)
-	{
-		if (prices.size() <= 1)
-		{
-			return 0;
-		}
-		
-		vector<int> vecNotHaveList;
-		vecNotHaveList.push_back(0);
-		vecNotHaveList.push_back(max(0, prices[1] - prices[0]));
-		
-		vector<int> vecHaveList;
-		vecHaveList.push_back(- prices[0]);
-		vecHaveList.push_back(max(- prices[0], - prices[1]));
-		
-		for (int iIndex = 2; iIndex < prices.size(); iIndex ++)
-		{
-			vecNotHaveList.push_back(max(vecHaveList[iIndex - 1] + prices[iIndex], vecNotHaveList[iIndex - 1]));
-			vecHaveList.push_back(max(vecNotHaveList[iIndex - 2] - prices[iIndex], vecHaveList[iIndex - 1]));
-		}
-		
-		return vecNotHaveList[vecNotHaveList.size() - 1];
+    {
+        if (prices.size() <= 1)
+        {
+            return 0;
+        }
+        
+        vector<int> vecNotHaveList;
+        vecNotHaveList.push_back(0);
+        vecNotHaveList.push_back(max(0, prices[1] - prices[0]));
+        
+        vector<int> vecHaveList;
+        vecHaveList.push_back(- prices[0]);
+        vecHaveList.push_back(max(- prices[0], - prices[1]));
+        
+        for (int iIndex = 2; iIndex < prices.size(); iIndex ++)
+        {
+            vecNotHaveList.push_back(max(vecHaveList[iIndex - 1] + prices[iIndex], vecNotHaveList[iIndex - 1]));
+            vecHaveList.push_back(max(vecNotHaveList[iIndex - 2] - prices[iIndex], vecHaveList[iIndex - 1]));
+        }
+        
+        return vecNotHaveList[vecNotHaveList.size() - 1];
     }
-	
+    
 private:
 
-	int max(int x, int y)
-	{
-		return x > y ? x : y;
-	}
+    int max(int x, int y)
+    {
+        return x > y ? x : y;
+    }
 };
 
 /*

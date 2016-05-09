@@ -2,67 +2,67 @@ class Solution
 {
 public:
 
-	int nthSuperUglyNumber(int n, vector<int> & primes)
-	{
-		m_vecResultList.clear();
-		m_vecResultList.push_back(0);
-		m_vecResultList.push_back(1);
-		m_vecResultList.push_back(primes[0]);
-		
-		for (int iCurrent = 3; iCurrent <= n; iCurrent ++)
-		{
-			int iMinNext = (int)((unsigned)(-1) >> 1);
-			
-			for (int iIndex = 0; iIndex < primes.size(); iIndex ++)
-			{
-				int iNextExpect = getMinBiggerValue(0, iCurrent - 1, m_vecResultList[iCurrent - 1] / primes[iIndex]) * primes[iIndex];
-				
-				if (iNextExpect < iMinNext)
-				{
-					iMinNext = iNextExpect;
-				}
-			}
-			
-			m_vecResultList.push_back(iMinNext);
-		}
-		
-		return m_vecResultList[n];
+    int nthSuperUglyNumber(int n, vector<int> & primes)
+    {
+        m_vecResultList.clear();
+        m_vecResultList.push_back(0);
+        m_vecResultList.push_back(1);
+        m_vecResultList.push_back(primes[0]);
+        
+        for (int iCurrent = 3; iCurrent <= n; iCurrent ++)
+        {
+            int iMinNext = (int)((unsigned)(-1) >> 1);
+            
+            for (int iIndex = 0; iIndex < primes.size(); iIndex ++)
+            {
+                int iNextExpect = getMinBiggerValue(0, iCurrent - 1, m_vecResultList[iCurrent - 1] / primes[iIndex]) * primes[iIndex];
+                
+                if (iNextExpect < iMinNext)
+                {
+                    iMinNext = iNextExpect;
+                }
+            }
+            
+            m_vecResultList.push_back(iMinNext);
+        }
+        
+        return m_vecResultList[n];
     }
-	
+    
 private:
 
-	int getMinBiggerValue(int iStartIndex, int iEndIndex, int iValue)
-	{
-		if (iValue == 0)
-		{
-			return 1;
-		}
-		
-		while (iStartIndex >= 0 && iEndIndex >= 0 && iStartIndex <= iEndIndex)
-		{
-			int iMidIndex = iStartIndex + (iEndIndex - iStartIndex) / 2;
-			
-			if (iValue == m_vecResultList[iMidIndex])
-			{
-				return m_vecResultList[iMidIndex + 1];
-			}
-			
-			if (iValue < m_vecResultList[iMidIndex])
-			{
-				iEndIndex = iMidIndex - 1;
-			}
-			else
-			{
-				iStartIndex = iMidIndex + 1;
-			}
-		}
-		
-		return m_vecResultList[iStartIndex];
-	}
-	
+    int getMinBiggerValue(int iStartIndex, int iEndIndex, int iValue)
+    {
+        if (iValue == 0)
+        {
+            return 1;
+        }
+        
+        while (iStartIndex >= 0 && iEndIndex >= 0 && iStartIndex <= iEndIndex)
+        {
+            int iMidIndex = iStartIndex + (iEndIndex - iStartIndex) / 2;
+            
+            if (iValue == m_vecResultList[iMidIndex])
+            {
+                return m_vecResultList[iMidIndex + 1];
+            }
+            
+            if (iValue < m_vecResultList[iMidIndex])
+            {
+                iEndIndex = iMidIndex - 1;
+            }
+            else
+            {
+                iStartIndex = iMidIndex + 1;
+            }
+        }
+        
+        return m_vecResultList[iStartIndex];
+    }
+    
 private:
 
-	vector<int> m_vecResultList;
+    vector<int> m_vecResultList;
 };
 
 /*
