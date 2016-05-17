@@ -79,3 +79,13 @@ public:
         return vecFinalResult;
     }
 };
+
+/*
+
+Thinking is so complex... And not bug free... many bugs...
+
+Classical 2 Pointer algorithm. Using inner loop to find next index to prevent repeating.
+
+There must be better solutions. Commit it later!
+
+*/
