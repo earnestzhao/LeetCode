@@ -61,6 +61,6 @@ Normal Algorithm:
 
 3. For each string on R(n-1) result, add "()" in middle space of each two neighbour charactors.
 
-There must be a better solution. Research it later.
+There must be better solutions. Research it later.
 
 */
