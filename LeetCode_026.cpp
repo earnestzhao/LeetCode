@@ -19,14 +19,16 @@ public:
             }
         }
         
-        iResultLength ++;
+        return iResultLength + 1;
         
-        while (nums.size() > iResultLength)
-        {
-            nums.pop_back();
-        }
-        
-        return iResultLength;
+//      iResultLength ++;
+//        
+//      while (nums.size() > iResultLength)
+//      {
+//          nums.pop_back();
+//      }
+//        
+//      return iResultLength;
     }
 };
 
