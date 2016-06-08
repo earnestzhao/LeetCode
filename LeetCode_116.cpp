@@ -28,3 +28,13 @@ public:
         }
     }
 };
+
+/*
+
+Thinking was wrong first, but then right, and bug free after right.
+
+Normal recursion, and connect the right side nodes of the left sub-tree to the left side nodes of the right sub-tree.
+
+Because of perfect binary tree, checking only one side 'NOT NULL' is just OK.
+
+*/
