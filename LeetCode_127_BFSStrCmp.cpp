@@ -76,7 +76,7 @@ private:
 
 Thinking is right, but a compile bug and a small bug.
 
-Bandwidth-first search, using string compare each time.
+Breadth-first search, using string compare each time.
 
 1. Add adjust elements into queue, and delete them from word list.
 

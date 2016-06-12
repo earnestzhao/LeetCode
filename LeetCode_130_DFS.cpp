@@ -86,3 +86,13 @@ private:
         }
     }
 };
+
+/*
+
+Thinking is right, almost bug free, but a 'Runtime Error' happened, because of too many recursion depth.
+
+Normal depth-first search. Search from 'O' element on edge. Using stack to prevent from recursion RE.
+
+Optiminze result: space complexity O(1).
+
+*/
