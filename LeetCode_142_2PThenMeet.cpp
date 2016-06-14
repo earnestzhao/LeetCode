@@ -67,4 +67,6 @@ So, set a pointer PA on head, and a pointer PB on the node which the slow pointe
 
 PA and PB move to next each time, when they are meet, the result is the meeting node.
 
+Time complexity: O(n). Space complexity: O(1).
+
 */
