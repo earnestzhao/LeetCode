@@ -45,3 +45,11 @@ public:
         }
     }
 };
+
+/*
+
+Thinking is right, but many small bugs, and slow run-time.
+
+Using stack to reverse each word, reverse total string and delete extra spaces.
+
+*/
