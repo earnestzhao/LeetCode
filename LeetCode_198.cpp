@@ -25,7 +25,7 @@ public:
         
         for (int iIndex = 2; iIndex < nums.size(); iIndex ++)
         {
-            vecIndexRobMax.push_back(max(vecIndexNoRobMax[iIndex - 1] + nums[iIndex], vecIndexRobMax[iIndex - 2] + nums[iIndex]));
+            vecIndexRobMax.push_back(vecIndexNoRobMax[iIndex - 1] + nums[iIndex]);
             vecIndexNoRobMax.push_back(max(vecIndexRobMax[iIndex - 1], vecIndexNoRobMax[iIndex - 1]));
         }
         
@@ -51,5 +51,13 @@ rm[i] = max { nrm[i-1] + nums[i], rm[i-2] + nums[i] }
 nrm[i] = max { rm[i-1], nrm[i-1] }
 
 The final result is max { rm[nums.size()-1], nrm[nums.size()-1] }
+
+----------------------------------------
+
+A little optiminize:
+
+rm[i] = nrm[i-1] + nums[i].
+
+That's because nrm[i] = max { rm[i-1], nrm[i-1] }, the rm[i-2] is included.
 
 */
