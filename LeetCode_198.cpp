@@ -9,21 +9,13 @@ public:
             return 0;
         }
         
-        if (nums.size() == 1)
-        {
-            return nums[0];
-        }
-        
         vector<int> vecIndexRobMax;
         vector<int> vecIndexNoRobMax;
         
         vecIndexRobMax.push_back(nums[0]);
         vecIndexNoRobMax.push_back(0);
         
-        vecIndexRobMax.push_back(nums[1]);
-        vecIndexNoRobMax.push_back(nums[0]);
-        
-        for (int iIndex = 2; iIndex < nums.size(); iIndex ++)
+        for (int iIndex = 1; iIndex < nums.size(); iIndex ++)
         {
             vecIndexRobMax.push_back(vecIndexNoRobMax[iIndex - 1] + nums[iIndex]);
             vecIndexNoRobMax.push_back(max(vecIndexRobMax[iIndex - 1], vecIndexNoRobMax[iIndex - 1]));
