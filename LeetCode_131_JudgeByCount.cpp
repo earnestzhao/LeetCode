@@ -95,6 +95,6 @@ Thinking is right, almost bug free, but it has a long run-time.
 
 Normal backtracking.
 
-Using count of charactor to reduce palindrome judgement.
+Using count of charactor to reduce the times of palindrome judgement.
 
 */
