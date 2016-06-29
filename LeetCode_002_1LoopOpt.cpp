@@ -22,19 +22,16 @@ public:
         
         while (pstWork1 != NULL || pstWork2 != NULL)
         {
-            int iPlusResult = 0;
+            int iPlusResult = iNextPosPlus;
             
-            if (pstWork1 == NULL)
+            if (pstWork1 != NULL)
             {
-                iPlusResult = pstWork2 -> val + iNextPosPlus;
+                iPlusResult += pstWork1 -> val;
             }
-            else if (pstWork2 == NULL)
+            
+            if (pstWork2 != NULL)
             {
-                iPlusResult = pstWork1 -> val + iNextPosPlus;
-            }
-            else
-            {
-                iPlusResult = pstWork1 -> val + pstWork2 -> val + iNextPosPlus;
+                iPlusResult += pstWork2 -> val;
             }
             
             iCurrentPosNum = iPlusResult >= 10 ? iPlusResult - 10 : iPlusResult;
@@ -48,7 +45,7 @@ public:
             pstWork2 = (pstWork2 == NULL ? NULL : pstWork2 -> next);
         }
         
-        if (iNextPosPlus & 1)
+        if (iNextPosPlus > 0)
         {
             pstResultWork = new ListNode(iNextPosPlus);
             pstResultTail -> next = pstResultWork;
