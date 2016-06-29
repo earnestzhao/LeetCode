@@ -4,29 +4,20 @@ public:
 
     int lengthOfLongestSubstring(string s)
     {
-        int iFinalResult = 0;
+        int iFinalResult = 0, aiCharLastIndex[256];
         
-        unordered_map<char, int> hmapCharLastIndex;
+        memset((char *)aiCharLastIndex, 0x80, sizeof(aiCharLastIndex));
         
         for (int iIndex = 0, iPrevResult = 0, iCurrResult = 0; iIndex < s.length(); iIndex ++, iPrevResult = iCurrResult)
         {
-            unordered_map<char, int>::iterator hmapIterator = hmapCharLastIndex.find(s[iIndex]);
-            
-            if (hmapIterator != hmapCharLastIndex.end())
-            {
-                iCurrResult = min(iIndex - hmapIterator -> second, iPrevResult + 1);
-            }
-            else
-            {
-                iCurrResult = iPrevResult + 1;
-            }
+            iCurrResult = min(iIndex - aiCharLastIndex[s[iIndex]], iPrevResult + 1);
             
             if (iFinalResult < iCurrResult)
             {
                 iFinalResult = iCurrResult;
             }
             
-            hmapCharLastIndex[s[iIndex]] = iIndex;
+            aiCharLastIndex[s[iIndex]] = iIndex;
         }
         
         return iFinalResult;
@@ -49,5 +40,13 @@ Define nrls[i] as the length of the longest substring without repeating whose la
 Then, the recursive relation is --> nrls[i] = min { nrls[i-1] + 1, i - lastIndex(s[i]) }, lastIndex(s[i]) = max (j < i, s[j] = s[i]) { j }.
 
 The final result is max { nrls[i] }.
+
+----------------------------------------
+
+Optimization:
+
+1. Change unordered_map to a whole character set indexed array.
+
+2. Change initial value of the set indexed array to reduce judgement once a loop.
 
 */

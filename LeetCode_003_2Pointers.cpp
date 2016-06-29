@@ -4,15 +4,17 @@ public:
 
     int lengthOfLongestSubstring(string s)
     {
-        unordered_set<char> hsetCurrentSubChar;
-        
         int iResultLength = 0, iCurrentLength = 0;
         
-        unsigned uiIndex = 0, uiEarlistIndexInSet = 0;
+        int iIndex = 0, iEarlistIndexInSet = 0;
         
-        while (uiIndex < s.length())
+        int aiCharEarlistIndex[256];
+        
+        memset((char *)aiCharEarlistIndex, -1, sizeof(aiCharEarlistIndex));
+        
+        while (iIndex < s.length())
         {
-            if (hsetCurrentSubChar.find(s[uiIndex]) != hsetCurrentSubChar.end())
+            if (aiCharEarlistIndex[s[iIndex]] >= 0)
             {
                 if (iResultLength < iCurrentLength)
                 {
@@ -20,20 +22,20 @@ public:
                 }
                 
                 iCurrentLength --;
-                hsetCurrentSubChar.erase(s[uiEarlistIndexInSet]);
-                uiEarlistIndexInSet ++;
+                aiCharEarlistIndex[s[iEarlistIndexInSet]] = -1;
+                iEarlistIndexInSet ++;
             }
             else
             {
-                hsetCurrentSubChar.insert(s[uiIndex]);
+                aiCharEarlistIndex[s[iIndex]] = iIndex;
                 iCurrentLength ++;
-                uiIndex ++;
-                
-                if (uiIndex >= s.length() && iResultLength < iCurrentLength)
-                {
-                    iResultLength = iCurrentLength;
-                }
+                iIndex ++;
             }
+        }
+        
+        if (iResultLength < iCurrentLength)
+        {
+            iResultLength = iCurrentLength;
         }
         
         return iResultLength;
@@ -49,5 +51,11 @@ Two pointers.
 2. Behind pointer is used for keeping the current longest no repeat substring's start index.
 
 3. 'iCurrentLength' and 'iResultLength' are used for updating result.
+
+----------------------------------------
+
+Optimization:
+
+Change unordered_map to a whole character set indexed array.
 
 */
