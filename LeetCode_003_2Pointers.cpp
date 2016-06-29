@@ -4,7 +4,7 @@ public:
 
     int lengthOfLongestSubstring(string s)
     {
-        set<char> setCurrentSubChar;
+        unordered_set<char> hsetCurrentSubChar;
         
         int iResultLength = 0, iCurrentLength = 0;
         
@@ -12,7 +12,7 @@ public:
         
         while (uiIndex < s.length())
         {
-            if (setCurrentSubChar.find(s[uiIndex]) != setCurrentSubChar.end())
+            if (hsetCurrentSubChar.find(s[uiIndex]) != hsetCurrentSubChar.end())
             {
                 if (iResultLength < iCurrentLength)
                 {
@@ -20,12 +20,12 @@ public:
                 }
                 
                 iCurrentLength --;
-                setCurrentSubChar.erase(s[uiEarlistIndexInSet]);
+                hsetCurrentSubChar.erase(s[uiEarlistIndexInSet]);
                 uiEarlistIndexInSet ++;
             }
             else
             {
-                setCurrentSubChar.insert(s[uiIndex]);
+                hsetCurrentSubChar.insert(s[uiIndex]);
                 iCurrentLength ++;
                 uiIndex ++;
                 
@@ -39,3 +39,15 @@ public:
         return iResultLength;
     }
 };
+
+/*
+
+Two pointers.
+
+1. Front pointer is used for collecting new character and check whether it is already exist.
+
+2. Behind pointer is used for keeping the current longest no repeat substring's start index.
+
+3. 'iCurrentLength' and 'iResultLength' are used for updating result.
+
+*/
