@@ -7,6 +7,7 @@ public:
         int iListSize1 = nums1.size();
         int iListSize2 = nums2.size();
         
+        // To confirm that the 'iAnotherIndex' in the loop is non-negative.
         if (iListSize1 > iListSize2)
         {
             return findMedianSortedArrays(nums2, nums1);
@@ -71,5 +72,7 @@ public:
 /*
 
 https://leetcode.com/discuss/15790/share-my-o-log-min-m-n-solution-with-explanation
+
+The thinking is smart which using division to image median.
 
 */
