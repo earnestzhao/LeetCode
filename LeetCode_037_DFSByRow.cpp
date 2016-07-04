@@ -55,8 +55,16 @@ private:
         vector<int> & vecFillNum   = vecFillNumbers[iRowIndex];
         vector<int> & vecFillIndex = vecFillIndexes[iRowIndex];
         
+        int iCannotFillIndex  = 0;
+        int iCannotFillNumber = -1;
+        
         do
         {
+            if (vecFillNum[iCannotFillIndex] == iCannotFillNumber)
+            {
+                continue;
+            }
+            
             bool bCanFillAll = true;
             
             for (int iIndex = 0; iIndex < vecFillIndex.size(); iIndex ++)
@@ -69,13 +77,18 @@ private:
                 }
                 else
                 {
-                    bCanFillAll = false;
+                    iCannotFillNumber = vecFillNum[iIndex];
+                    iCannotFillIndex  = iIndex;
+                    bCanFillAll       = false;
                     break;
                 }
             }
             
             if (bCanFillAll)
             {
+                iCannotFillIndex  = 0;
+                iCannotFillNumber = -1;
+                
                 for (int iIndex = 0; iIndex < vecFillIndex.size(); iIndex ++)
                 {
                     vecExistRow[iRowIndex][vecFillNum[iIndex]]                                 = true;
@@ -117,8 +130,24 @@ Thinking is right, but 'time limit exceeded', however, there are many points to 
 
 1. The worst time complexity is O(((k/9)!)^9), better than LeetCode_037_DFSByElem.cpp whose time complexity is O(9^k), k is the number of the empty elements.
 
-2. The whole runtime is worse than LeetCode_037_DFSByElem.cpp, because each row must have k! times combination generation operation.
+2. The whole runtime is worse than LeetCode_037_DFSByElem.cpp, because each row must have k! times combination generation operation. And then, each combination will cause a heavy sequence of backtracking test.
 
 3. In LeetCode_037_DFSByElem.cpp, if an element which will be filled checking invalid, the times of operation can be reduced to 9^(k-1) and the more elements invalid, the runtime will reduce more.
+
+--------------------------------------------------
+
+Optimization:
+
+1. Record which value on which position cannot be filled at this time.
+
+2. After generate next permutation, check the value whether is still at the position or not.
+
+3. If the value is still at the position, then, generate next permutation.
+
+The optimization prevents the heavy sequence of backtracking test when the same invalid element appears in the same position durling permutation generation.
+
+After optimization, the code is accepted !!!
+
+But k! times combination generation is still exist. So, the runtime is still so long, which only beats 0.5% submittions.
 
 */
