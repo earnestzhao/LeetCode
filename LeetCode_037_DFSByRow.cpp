@@ -61,7 +61,9 @@ private:
             
             for (int iIndex = 0; iIndex < vecFillIndex.size(); iIndex ++)
             {
-                if (!vecExistRow[iRowIndex][vecFillNum[iIndex]] && !vecExistCol[vecFillIndex[iIndex]][vecFillNum[iIndex]] && !vecExistCub[cubIndex(iRowIndex, vecFillIndex[iIndex])][vecFillNum[iIndex]])
+                if (!vecExistRow[iRowIndex][vecFillNum[iIndex]]
+                 && !vecExistCol[vecFillIndex[iIndex]][vecFillNum[iIndex]]
+                 && !vecExistCub[cubIndex(iRowIndex, vecFillIndex[iIndex])][vecFillNum[iIndex]])
                 {
                     vecBoard[iRowIndex][vecFillIndex[iIndex]] = (char)('0' + vecFillNum[iIndex]);
                 }
@@ -108,3 +110,15 @@ private:
 
     enum { SUDOKU_SIZE = 9, CUBE_SIZE = 3 };
 };
+
+/*
+
+Thinking is right, but 'time limit exceeded', however, there are many points to learn.
+
+1. The worst time complexity is O(((k/9)!)^9), better than LeetCode_037_DFSByElem.cpp whose time complexity is O(9^k), k is the number of the empty elements.
+
+2. The whole runtime is worse than LeetCode_037_DFSByElem.cpp, because each row must have k! times combination generation operation.
+
+3. In LeetCode_037_DFSByElem.cpp, if an element which will be filled checking invalid, the times of operation can be reduced to 9^(k-1) and the more elements invalid, the runtime will reduce more.
+
+*/
