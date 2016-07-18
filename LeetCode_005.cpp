@@ -52,3 +52,15 @@ public:
         return s.substr((iFinalResultIndex - vecResultList[iFinalResultIndex] + 1) / 2, vecResultList[iFinalResultIndex] - 1);
     }
 };
+
+/*
+
+Algorithm Manacher.
+
+1. Add '#' to each space between adjacent characters, including before head and after tail. After that, the new string can be defined as 'ExtString'.
+
+2. Define 'PalindromeRadius[i]' as the half length + 1 of palindrome whose center is ExtString[i].
+
+3. PalindromeRadius[i] >= min(PalindromeRadius[2 * id - i], maxId - i), where 'maxId' is the end of the current fastest palindrome and 'id' is the center of it.
+
+*/
