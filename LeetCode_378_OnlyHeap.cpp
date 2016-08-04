@@ -35,6 +35,6 @@ Bug free once !!!
 
 Using heap (priority_queue) to keep maximum 'k' elements.
 
-Time complexity: O(n*n*logn)
+Time complexity: O(n*n*logk), runtime: 116ms
 
 */
