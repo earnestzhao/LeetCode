@@ -25,4 +25,8 @@ public:
     {
         
     }
+    
+private:
+
+    unordered_set<int> hsetStore;
 };
