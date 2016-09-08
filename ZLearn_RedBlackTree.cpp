@@ -72,6 +72,9 @@ RBTreeNode * LeftRotate(RBTreeNode * pstRotateUpLevelNode)
         }
     }
     
+    // 设置上一步指向关系的父指针
+    pstNewUpLevelNode -> parent = pstUpLevelNodeParent;
+    
     // 当前上层节点的右指针，指向旋转后新的上层节点的左孩子
     pstRotateUpLevelNode -> right = pstNewUpLevelNode -> left;
     
@@ -126,6 +129,9 @@ RBTreeNode * RightRotate(RBTreeNode * pstRotateUpLevelNode)
             pstUpLevelNodeParent -> right = pstNewUpLevelNode;
         }
     }
+    
+    // 设置上一步指向关系的父指针
+    pstNewUpLevelNode -> parent = pstUpLevelNodeParent;
     
     // 当前上层节点的左指针，指向旋转后新的上层节点的右孩子
     pstRotateUpLevelNode -> left = pstNewUpLevelNode -> right;
