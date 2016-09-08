@@ -37,6 +37,7 @@ struct RBTreeNode
 };
 
 
+// 左旋操作
 RBTreeNode * LeftRotate(RBTreeNode * pstRotateUpLevelNode)
 {
     // 当前指针为空，无法左旋
@@ -91,6 +92,7 @@ RBTreeNode * LeftRotate(RBTreeNode * pstRotateUpLevelNode)
 }
 
 
+// 右旋操作
 RBTreeNode * RightRotate(RBTreeNode * pstRotateUpLevelNode)
 {
     // 当前指针为空，无法右旋
@@ -145,6 +147,7 @@ RBTreeNode * RightRotate(RBTreeNode * pstRotateUpLevelNode)
 }
 
 
+// 插入
 RBTreeNode * Insert(RBTreeNode * pstRoot, int iValue)
 {
     // 生成新节点
@@ -280,6 +283,7 @@ RBTreeNode * Insert(RBTreeNode * pstRoot, int iValue)
 }
 
 
+// 测试层次遍历
 void LevelTraversal(RBTreeNode * pstRoot)
 {
     std::queue<RBTreeNode *> queueTraversal;
@@ -306,12 +310,19 @@ void LevelTraversal(RBTreeNode * pstRoot)
 }
 
 
+// 测试
 int main()
 {
+    // 输入数据
     int iTestValue = 0;
     
+    // 待测试红黑树
     RBTreeNode * pstRoot = NULL;
     
+    // 输出插入提示
+    std::cout << "Input Insert Elements: ";
+    
+    // 输入元素列表，以0结束
     while (std::cin >> iTestValue)
     {
         if (iTestValue == 0)
@@ -322,6 +333,10 @@ int main()
         pstRoot = Insert(pstRoot, iTestValue);
     }
     
+    // 插入后看结果
     LevelTraversal(pstRoot);
+    
+    // 退出
     return 0;
 }
+
