@@ -185,7 +185,7 @@ private:
 
 Thinking is right, but a lot of bugs in pointer operation.
 
-Trie Tree. Time complexity: O(sizeof(int) * 8) = O(1).
+Binary Trie Tree. Time complexity: O(sizeof(int) * 8) = O(1).
 
 1. Store integer as a path of bit trie node.
 
