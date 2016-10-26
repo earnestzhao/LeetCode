@@ -74,6 +74,10 @@ private:
 
 /*
 
-Normal Dynamic programming.
+Dynamic programming.
+
+result[i] = (result[i-1] && valid(i, i)) || (result[i-2] && valid(i-1, i)) || (result[i-3] && valid(i-2, i)) || (result[i-4] && valid(i-3, i))
+
+The judging times are so many ...
 
 */
