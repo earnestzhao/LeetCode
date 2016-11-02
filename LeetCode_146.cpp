@@ -23,7 +23,7 @@ class LRUCache
 {
 public:
 
-    LRUCache(int capacity) : m_iCount(0), m_iCapacity(capacity), m_pstHead(NULL), m_pstTail(NULL)
+    LRUCache(int capacity) : m_iCount(0), m_iCapacity(capacity), m_pstHead(NULL), m_pstTail(NULL), m_hmapIndex(2 * capacity)
     {
         m_pstHead = new LRUListNode(INT_MIN, INT_MIN);
         m_pstTail = new LRUListNode(INT_MAX, INT_MAX);
