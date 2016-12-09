@@ -16,4 +16,9 @@ public:
     {
         
     }
+    
+private:
+
+    // Storage
+    unordered_map<int, int> m_hmapKeyValue;
 };
